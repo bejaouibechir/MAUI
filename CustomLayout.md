@@ -1,6 +1,10 @@
 # Cas d'implémentation d'un layout personnalisé : DashboardLayout
 
-Imaginons que vous ayez besoin de créer un DashboardLayout dans votre application MAUI pour organiser plusieurs widgets (par exemple, graphiques, listes, et indicateurs) de manière flexible et dynamique. Chaque widget peut être redimensionné et déplacé librement par l'utilisateur.
+Imaginons que vous ayez besoin de créer un **DashboardLayout** dans votre application MAUI pour organiser plusieurs widgets (par exemple, graphiques, listes, et indicateurs) de manière flexible et dynamique. Chaque widget peut être redimensionné et déplacé librement par l'utilisateur.
+
+**Cas d'utilisation réel** :
+
+Ce type de layout personnalisé est indispensable lorsque vous devez créer une interface utilisateur complexe et interactive, telle qu'un tableau de bord personnalisable où les utilisateurs peuvent organiser et manipuler les widgets selon leurs besoins. Cela dépasse les fonctionnalités offertes par les layouts standard comme StackLayout ou Grid, et nécessite une logique de positionnement plus avancée et flexible.
 
 # Implémentation de DashboardLayout
 Voici comment vous pourriez implémenter DashboardLayout en utilisant AbsoluteLayout pour gérer la position absolue des widgets et permettre leur redimensionnement :
