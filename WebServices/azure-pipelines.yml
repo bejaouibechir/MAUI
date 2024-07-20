@@ -1,0 +1,45 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  ngrok_url: 'https://e15c-197-2-148-102.ngrok-free.app'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+  displayName: 'Use .NET SDK 8.0.x'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/JWTService/JWTService.csproj'
+  displayName: 'Restore .NET Dependencies'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/JWTService/JWTService.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+  displayName: 'Build .NET Project'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+    checkLatest: true
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g newman
+  displayName: 'Install Newman'
+
+- script: |
+    newman run postman_tests/postman_collection.json --environment postman_tests/postman_environment.json --env-var baseUrl=$(ngrok_url)
+  displayName: 'Run Newman Tests'
