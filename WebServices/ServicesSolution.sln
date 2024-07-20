@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServiceGrpc", "MyServiceGrpc\MyServiceGrpc.csproj", "{D3715C74-1B0B-4F2D-8973-74A3407A5063}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServiceGraphQL", "MyServiceGraphQL\MyServiceGraphQL.csproj", "{134DB545-AB1B-4548-9D92-4F65DB9B67E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServiceWebSocket", "MyServiceSocketIO\MyServiceWebSocket.csproj", "{1F892B4C-9360-4EEA-9E08-9C88BB02A9DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySoapService", "MySoapService\MySoapService.csproj", "{45900574-EC74-4DDD-B1B4-27E1AFBB47CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTService", "JWTService\JWTService.csproj", "{27BAFA62-A76A-437C-A002-4BF398F3E24A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postman_tests", "postman_tests", "{DC5F20E0-87D9-465B-8C70-D53D3A4C4EA2}"
+	ProjectSection(SolutionItems) = preProject
+		postman_tests\postman_collection.json = postman_tests\postman_collection.json
+		postman_tests\postman_environment.json = postman_tests\postman_environment.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3715C74-1B0B-4F2D-8973-74A3407A5063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3715C74-1B0B-4F2D-8973-74A3407A5063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3715C74-1B0B-4F2D-8973-74A3407A5063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3715C74-1B0B-4F2D-8973-74A3407A5063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134DB545-AB1B-4548-9D92-4F65DB9B67E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134DB545-AB1B-4548-9D92-4F65DB9B67E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134DB545-AB1B-4548-9D92-4F65DB9B67E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134DB545-AB1B-4548-9D92-4F65DB9B67E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F892B4C-9360-4EEA-9E08-9C88BB02A9DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F892B4C-9360-4EEA-9E08-9C88BB02A9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F892B4C-9360-4EEA-9E08-9C88BB02A9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F892B4C-9360-4EEA-9E08-9C88BB02A9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45900574-EC74-4DDD-B1B4-27E1AFBB47CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45900574-EC74-4DDD-B1B4-27E1AFBB47CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45900574-EC74-4DDD-B1B4-27E1AFBB47CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45900574-EC74-4DDD-B1B4-27E1AFBB47CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BAFA62-A76A-437C-A002-4BF398F3E24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BAFA62-A76A-437C-A002-4BF398F3E24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BAFA62-A76A-437C-A002-4BF398F3E24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BAFA62-A76A-437C-A002-4BF398F3E24A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FFBA462-3288-4B63-A1FA-9EBF527D72EB}
+	EndGlobalSection
+EndGlobal

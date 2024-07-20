@@ -1,0 +1,6 @@
+@MyServiceSockIO_HostAddress = http://localhost:5285
+
+GET {{MyServiceSockIO_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
