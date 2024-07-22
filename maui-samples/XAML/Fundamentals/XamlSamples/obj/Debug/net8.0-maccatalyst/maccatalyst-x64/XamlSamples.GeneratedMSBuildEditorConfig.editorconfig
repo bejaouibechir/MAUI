@@ -1,0 +1,125 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = XamlSamples
+build_property.ProjectDir = C:\MAUI\3. MAUI\maui-samples\XAML\Fundamentals\XamlSamples\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/AbsoluteDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.AbsoluteDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AbsoluteDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AbsoluteDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/ClockPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.ClockPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ClockPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ClockPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/GridDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.GridDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\GridDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\GridDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/HelloXamlPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.HelloXamlPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\HelloXamlPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\HelloXamlPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/HslColorScrollPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.HslColorScrollPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\HslColorScrollPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\HslColorScrollPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/KeypadPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.KeypadPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\KeypadPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\KeypadPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/ListViewDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.ListViewDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ListViewDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ListViewDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MainPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/OneShotDateTimePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.OneShotDateTimePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\OneShotDateTimePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\OneShotDateTimePage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/SharedResourcesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.SharedResourcesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SharedResourcesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SharedResourcesPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/SliderBindingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.SliderBindingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SliderBindingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SliderBindingsPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/SliderTransformsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.SliderTransformsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SliderTransformsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SliderTransformsPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/StaticConstantsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.StaticConstantsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\StaticConstantsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\StaticConstantsPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/Fundamentals/XamlSamples/Views/XamlPlusCodePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = XamlSamples.Views.XamlPlusCodePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\XamlPlusCodePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\XamlPlusCodePage.xaml

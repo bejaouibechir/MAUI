@@ -1,0 +1,85 @@
+is_global = true
+build_property.TargetFramework = net7.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Animations
+build_property.ProjectDir = C:\MAUI\3. MAUI\maui-samples\Animations\Animations\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/CustomAnimationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.CustomAnimationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\CustomAnimationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\CustomAnimationPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/EasingEditorPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.EasingEditorPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EasingEditorPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EasingEditorPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/EasingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.EasingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EasingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EasingsPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/FadePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.FadePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\FadePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\FadePage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/RotatePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.RotatePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\RotatePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\RotatePage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/ScalePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.ScalePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ScalePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ScalePage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Pages/TranslatePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Pages.TranslatePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\TranslatePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\TranslatePage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Resources/Styles/Icons.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Resources.Styles.Icons.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Icons.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Icons.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/Animations/Animations/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Animations.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml

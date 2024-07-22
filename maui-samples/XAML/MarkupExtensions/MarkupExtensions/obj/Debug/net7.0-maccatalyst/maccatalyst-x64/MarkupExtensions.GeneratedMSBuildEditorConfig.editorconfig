@@ -1,0 +1,101 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net7.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MarkupExtensions
+build_property.ProjectDir = C:\MAUI\3. MAUI\maui-samples\XAML\MarkupExtensions\MarkupExtensions\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/AppThemeBindingDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.AppThemeBindingDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AppThemeBindingDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AppThemeBindingDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/ArrayDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.ArrayDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ArrayDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ArrayDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/FontImageDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.FontImageDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\FontImageDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\FontImageDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/HslColorDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.HslColorDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\HslColorDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\HslColorDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MainPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/NullDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.NullDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\NullDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\NullDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/OnIdiomDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.OnIdiomDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\OnIdiomDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\OnIdiomDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/OnPlatformDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.OnPlatformDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\OnPlatformDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\OnPlatformDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/ReferenceDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.ReferenceDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ReferenceDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ReferenceDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/StaticDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.StaticDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\StaticDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\StaticDemoPage.xaml
+
+[C:/MAUI/3. MAUI/maui-samples/XAML/MarkupExtensions/MarkupExtensions/Views/TypeDemoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MarkupExtensions.Views.TypeDemoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\TypeDemoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\TypeDemoPage.xaml
