@@ -22,7 +22,7 @@ public class DashboardLayout : Layout<View>
                 continue;
 
             // Positionner chaque enfant selon ses coordonnées spécifiques
-            AbsoluteLayout.SetLayoutBounds(view, new Rectangle(x, y, width, height));
+            AbsoluteLayout.SetLayoutBounds(view, new Rect(x, y, width, height));
         }
     }
 
