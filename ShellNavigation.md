@@ -39,12 +39,12 @@ namespace YourNamespace
 
         private async void OnDetailsButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//detailsPage");
+            await Shell.Current.GoToAsync("///detailsPage");
         }
 
         private async void OnNewPageButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//newPage");
+            await Shell.Current.GoToAsync("///newPage");
         }
     }
 }
