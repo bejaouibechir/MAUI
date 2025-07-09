@@ -44,7 +44,7 @@ namespace YourNamespace
 
         private async void OnNewPageButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("///newPage");
+            await Shell.Current.GoToAsync("///newPage"); //Un routage non définit
         }
     }
 }
@@ -105,6 +105,7 @@ Modifier le fichier AppShell.xaml pour définir la structure de l'application.
 </Shell>
 
 ```
+- Remarquer que la naviguation vers NewPage n'boutira pas car le routage est non définit
 
 # Partie 2 : Gestion des navigations vers des pages non définies
 **Objectif :**
