@@ -85,7 +85,7 @@ public partial class DetailsPage : ContentPage
 
 - Lancez l'application et cliquez sur le bouton "Go to Details Page" pour naviguer vers une page définie.
 - Cliquez ensuite sur le bouton "Go to New Page" pour naviguer vers une page non définie.
-- Utilisez le débogueur pour observer la pile de navigation après chaque navigation.
+- Observer que ce là abouti à une erreur car le routage n'est pas définit
 
 
 
