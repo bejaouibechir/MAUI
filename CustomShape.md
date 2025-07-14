@@ -1,11 +1,47 @@
-# Implémentation d'une forme personalisée AnnotationShape
+#  **Création d’un Shape personnalisé pas à pas dans MAUI**
 
-Création d'un contrôle d'annotation simple avec une flèche, souvent utilisé dans les applications de dessin ou de marqueur d'image :
+#  **Les étapes**
 
-``` CSharp 
+###  Étape 1 : Shape personnalisé
 
+Créer ta classe et définis `GetPath()` pour dessiner ton chemin.
+
+---
+
+###  Étape 2 : Handler
+
+ - Créer un handler (`AnnotationShapeHandler`).
+ - Déclarer un `Mapper` pour les propriétés personnalisées.
+ - Forcer la mise à jour du dessin quand une propriété change.
+
+---
+
+###  Étape 3 : Enregistrement
+
+ Dans `MauiProgram.cs`, tu ajoutes :
+
+```csharp
+handlers.AddHandler(typeof(AnnotationShape), typeof(AnnotationShapeHandler));
+```
+
+---
+
+###  Étape 4 : Utilisation
+
+ Ajouter ton shape custom dans XAML, comme n’importe quel contrôle natif.
+
+
+---
+
+##  **1️ Créer la classe Shape personnalisée**
+
+###  AnnotationShape.cs
+
+```csharp
+using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Shapes;
+
+namespace MauiApp1;
 
 public class AnnotationShape : Shape
 {
@@ -14,11 +50,10 @@ public class AnnotationShape : Shape
     public float BoxWidth { get; set; } = 100;
     public float BoxHeight { get; set; } = 60;
 
-    public override void Draw(ICanvas canvas, RectangleF dirtyRect)
+    public override PathF GetPath()
     {
-        var path = new Path();
-        
-        // Définir le chemin du rectangle de base avec une flèche au-dessus
+        var path = new PathF();
+
         path.MoveTo(0, 0);
         path.LineTo(BoxWidth, 0);
         path.LineTo(BoxWidth, BoxHeight - ArrowHeight);
@@ -28,165 +63,106 @@ public class AnnotationShape : Shape
         path.LineTo(0, BoxHeight - ArrowHeight);
         path.Close();
 
-        // Remplir le rectangle de base
-        canvas.FillPath(path, Colors.LightBlue);
-
-        // Dessiner le contour du rectangle
-        canvas.DrawPath(path, Colors.Black, 2);
-
-        // Dessiner le texte d'annotation
-        canvas.DrawText("Annotation", 10, 10, Colors.Black, null);
-    }
-
-    public override bool Contains(float x, float y)
-    {
-        // Implémentation facultative pour détecter si un point est contenu dans la forme
-        return false;
+        return path;
     }
 }
-
 ```
 
-**Dans cet exemple :**
+---
 
-**AnnotationShape** dérive de Shape et surcharge les méthodes **Draw** et éventuellement **Contains**.
+##  **2️ Créer le Handler**
 
-**Draw**  définit un chemin (Path) qui représente une forme de boîte avec une flèche au-dessus, utilisée pour annoter une zone spécifique.
-Le chemin est dessiné avec une couleur de remplissage (LightBlue) et un contour noir (Colors.Black).
+###  AnnotationShapeHandler.cs
 
-Un texte "Annotation" est également dessiné à l'intérieur de la forme pour indiquer son but.
+```csharp
+using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Handlers;
 
-Ce type de forme personnalisée peut être utilisé dans une application de dessin pour permettre aux utilisateurs de marquer et d'annoter des images de manière visuelle et efficace.
+namespace MauiApp1;
 
-Pour illustrer l'utilisation de la forme personnalisée AnnotationShape que nous avons définie précédemment, voici comment vous pourriez l'intégrer dans une application MAUI simple pour annoter une image :
-
-Supposons que vous avez une page MAUI avec une image et vous souhaitez permettre à l'utilisateur d'ajouter une annotation au-dessus de cette image. Voici comment vous pourriez procéder :
-
-## Création de la Forme Personnalisée AnnotationShape :
-
-Définissez la classe **AnnotationShape** comme nous l'avons fait précédemment.
-
-## Utilisation de AnnotationShape dans une Vue MAUI :
-Voici un exemple simplifié d'utilisation dans une vue MAUI où vous affichez une image et ajoutez une annotation au clic de l'utilisateur :
-
-**en C#**
-
-``` CSharp 
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
-
-public class AnnotationPage : ContentPage
+public partial class AnnotationShapeHandler : ShapeViewHandler
 {
-    public AnnotationPage()
+    public AnnotationShapeHandler() : base(Mapper)
     {
-        var image = new Image
+    }
+
+    public static IPropertyMapper<Shape, AnnotationShapeHandler> Mapper =
+        new PropertyMapper<Shape, AnnotationShapeHandler>(ShapeViewHandler.Mapper)
         {
-            Source = "sampleimage.jpg", // Remplacez par votre image réelle
-            Aspect = Aspect.AspectFit,
-            Margin = new Thickness(20)
+            [nameof(AnnotationShape.ArrowWidth)] = MapAnnotationShape,
+            [nameof(AnnotationShape.ArrowHeight)] = MapAnnotationShape,
+            [nameof(AnnotationShape.BoxWidth)] = MapAnnotationShape,
+            [nameof(AnnotationShape.BoxHeight)] = MapAnnotationShape,
         };
 
-        var annotationShape = new AnnotationShape
-        {
-            ArrowWidth = 15,
-            ArrowHeight = 30,
-            BoxWidth = 150,
-            BoxHeight = 80,
-            Margin = new Thickness(50, 100, 0, 0)
-        };
-
-        var annotationButton = new Button
-        {
-            Text = "Add Annotation",
-            Margin = new Thickness(20)
-        };
-        annotationButton.Clicked += (sender, e) =>
-        {
-            // Ajouter l'annotation au dessus de l'image
-            image.Canvas.Children.Add(annotationShape);
-            image.InvalidateMeasure();
-        };
-
-        Content = new StackLayout
-        {
-            Children =
-            {
-                image,
-                annotationButton
-            }
-        };
+    static void MapAnnotationShape(AnnotationShapeHandler handler, Shape shape)
+    {
+        // Force la mise à jour du chemin
+        handler.UpdateValue(nameof(Shape.Data));
     }
 }
-
 ```
 
-** en XAML: **
+---
 
-Définir l'interface utilisateur en XAML (AnnotationPage.xaml)
+##  **3 Enregistrer le Handler dans MauiProgram.cs**
 
-``` XML
+### 📄 MauiProgram.cs
+
+```csharp
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
+using MauiApp1;
+
+namespace MauiApp1;
+
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>();
+
+        //  Enregistrement du handler
+        builder.ConfigureMauiHandlers(handlers =>
+        {
+            handlers.AddHandler(typeof(AnnotationShape), typeof(AnnotationShapeHandler));
+        });
+
+        return builder.Build();
+    }
+}
+```
+
+---
+
+##  **4️ Utiliser dans XAML**
+
+### 📄 MainPage.xaml
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.AnnotationPage"
-             BackgroundColor="White">
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.MainPage">
 
-    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Image x:Name="image" Source="sampleimage.jpg" Aspect="AspectFit" Margin="20" />
-        <Button Text="Add Annotation" Clicked="OnAddAnnotationClicked" Margin="20" />
-    </StackLayout>
+    <VerticalStackLayout Spacing="20" Padding="20">
 
+        <Label Text="Shape personnalisé : AnnotationShape" 
+               FontSize="20" />
+
+        <local:AnnotationShape 
+            Stroke="Black"
+            StrokeThickness="2"
+            Fill="LightBlue"
+            BoxWidth="120"
+            BoxHeight="80"
+            ArrowWidth="20"
+            ArrowHeight="30"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+    </VerticalStackLayout>
 </ContentPage>
 ```
-
-
-## Code-behind pour AnnotationPage (AnnotationPage.xaml.cs):
-
-``` CSharp 
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
-
-public partial class AnnotationPage : ContentPage
-{
-    public AnnotationPage()
-    {
-        InitializeComponent();
-    }
-
-    private void OnAddAnnotationClicked(object sender, EventArgs e)
-    {
-        var annotationShape = new AnnotationShape
-        {
-            ArrowWidth = 15,
-            ArrowHeight = 30,
-            BoxWidth = 150,
-            BoxHeight = 80,
-            Margin = new Thickness(50, 100, 0, 0)
-        };
-
-        // Ajouter l'annotation au dessus de l'image
-        image.Canvas.Children.Add(annotationShape);
-        image.InvalidateMeasure();
-    }
-}
-```
-
-### Explication :**
-### XAML (AnnotationPage.xaml) :
-
-Image affiche une image (sampleimage.jpg dans cet exemple).
-Button est utilisé pour déclencher l'ajout de l'annotation.
-L'événement Clicked du bouton est lié à la méthode OnAddAnnotationClicked dans le code-behind.
-Code-behind (AnnotationPage.xaml.cs) :
-
-Lorsque le bouton est cliqué (OnAddAnnotationClicked), un nouvel AnnotationShape est créé avec les dimensions spécifiées.
-AnnotationShape est ajouté au Canvas de l'image (image.Canvas.Children.Add(annotationShape)).
-image.InvalidateMeasure() est appelé pour forcer le recalcul des mesures et le redessin de l'image avec l'annotation ajoutée.
-Ce modèle permet d'ajouter dynamiquement des annotations personnalisées au-dessus d'une image dans une application MAUI en réponse à l'interaction utilisateur. Assurez-vous d'adapter les chemins d'accès aux images et les dimensions des formes selon vos besoins spécifiques.
-
-
-
-
-
-
-
-
