@@ -1,7 +1,54 @@
-#  **sqlite.md — Application MAUI SQLite complète**
+#  **sqlite.md — Application MAUI SQLite complète (version finale)**
 
 
-##  Étape 1 : Créer le projet
+#  Application MAUI de gestion des utilisateurs et tâches avec SQLite
+
+---
+
+##  Objectif
+
+- Créer une application .NET MAUI complète qui gère des **utilisateurs** et leurs **tâches**, en utilisant SQLite pour le stockage local.
+- Offrir une **expérience utilisateur complète**, avec navigation avant/arrière et rechargement automatique.
+
+---
+
+##  Structure du projet
+
+``` markdown 
+TasksManager/
+│
+├── App.xaml
+├── App.xaml.cs
+├── AppShell.xaml
+├── AppShell.xaml.cs
+├── MauiProgram.cs
+│
+├── Models/
+│   ├── User.cs
+│   └── UserTask.cs
+│
+├── Data/
+│   ├── UserRepository.cs
+│   └── TaskRepository.cs
+│
+├── Views/
+│   ├── UserListPage.xaml
+│   ├── UserListPage.xaml.cs
+│   ├── AddUserPage.xaml
+│   ├── AddUserPage.xaml.cs
+│   ├── TaskListPage.xaml
+│   ├── TaskListPage.xaml.cs
+│   ├── AddTaskPage.xaml
+│   └── AddTaskPage.xaml.cs
+│
+└── Resources/
+└── Fonts/
+
+```
+
+---
+
+## Étape 1 : Créer le projet
 
 - Créer un projet MAUI nommé `TasksManager`.
 - Installer le package NuGet :
@@ -14,7 +61,7 @@ sqlite-net-pcl
 
 ---
 
-##  Étape 2 : Créer les modèles
+## 💬 Étape 2 : Créer les modèles
 
 ### **Models/User.cs**
 
@@ -37,7 +84,7 @@ public class User
 
 ---
 
-### **Models/Task.cs**
+### **Models/UserTask.cs**
 
 ```csharp
 using SQLite;
@@ -58,7 +105,7 @@ public enum TaskPriority
     High
 }
 
-public class Task
+public class UserTask
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
@@ -92,7 +139,6 @@ public class UserRepository
     }
 
     public List<User> GetAllUsers() => db.Table<User>().ToList();
-    public User GetUser(int id) => db.Table<User>().FirstOrDefault(u => u.Id == id);
     public int SaveUser(User user) => db.Insert(user);
     public int DeleteUser(User user) => db.Delete(user);
 }
@@ -115,13 +161,12 @@ public class TaskRepository
     public TaskRepository(string dbPath)
     {
         db = new SQLiteConnection(dbPath);
-        db.CreateTable<Task>();
+        db.CreateTable<UserTask>();
     }
 
-    public List<Task> GetTasksByUser(int userId) => db.Table<Task>().Where(t => t.UserId == userId).ToList();
-    public Task GetTask(int id) => db.Table<Task>().FirstOrDefault(t => t.Id == id);
-    public int SaveTask(Task task) => db.Insert(task);
-    public int DeleteTask(Task task) => db.Delete(task);
+    public List<UserTask> GetTasksByUser(int userId) => db.Table<UserTask>().Where(t => t.UserId == userId).ToList();
+    public int SaveTask(UserTask task) => db.Insert(task);
+    public int DeleteTask(UserTask task) => db.Delete(task);
 }
 ```
 
@@ -163,7 +208,7 @@ public static class MauiProgram
 
 ---
 
-##  Étape 5 : Définir le Shell
+##  Étape 5 : Shell
 
 ### **AppShell.xaml**
 
@@ -181,7 +226,7 @@ public static class MauiProgram
 
 ##  Étape 6 : Liste des utilisateurs
 
-### **Views/UserListPage.xaml**
+### **UserListPage.xaml**
 
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -204,7 +249,7 @@ public static class MauiProgram
 
 ---
 
-### **Views/UserListPage.xaml.cs**
+### **UserListPage.xaml.cs**
 
 ```csharp
 using TasksManager.Models;
@@ -244,18 +289,25 @@ public partial class UserListPage : ContentPage
 
 ---
 
-##  Étape 7 : Liste des tâches d’un utilisateur
+## Étape 7 : Liste des tâches d’un utilisateur
 
-### **Views/TaskListPage.xaml**
+### **TaskListPage.xaml**
 
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TasksManager.Views.TaskListPage">
+             x:Class="TasksManager.Views.TaskListPage"
+             Title="Tasks">
 
     <StackLayout>
         <Label x:Name="UserLabel" FontSize="20" Padding="10"/>
-        <ListView x:Name="TaskListView" />
+        <ListView x:Name="TaskListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Status}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Text="Add Task" Clicked="OnAddTaskClicked" />
     </StackLayout>
 </ContentPage>
@@ -263,7 +315,7 @@ public partial class UserListPage : ContentPage
 
 ---
 
-### **Views/TaskListPage.xaml.cs**
+### **TaskListPage.xaml.cs**
 
 ```csharp
 using TasksManager.Models;
@@ -299,9 +351,9 @@ public partial class TaskListPage : ContentPage
 
 ---
 
-##  Étape 8 : Ajout d’un utilisateur
+##  Étape 8 : Ajouter un utilisateur
 
-### **Views/AddUserPage.xaml**
+### **AddUserPage.xaml**
 
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -320,7 +372,7 @@ public partial class TaskListPage : ContentPage
 
 ---
 
-### **Views/AddUserPage.xaml.cs**
+### **AddUserPage.xaml.cs**
 
 ```csharp
 using TasksManager.Models;
@@ -351,9 +403,9 @@ public partial class AddUserPage : ContentPage
 
 ---
 
-##  Étape 9 : Ajout d’une tâche
+## Étape 9 : Ajouter une tâche
 
-### **Views/AddTaskPage.xaml**
+### **AddTaskPage.xaml**
 
 ```xml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -388,7 +440,7 @@ public partial class AddUserPage : ContentPage
 
 ---
 
-### **Views/AddTaskPage.xaml.cs**
+### **AddTaskPage.xaml.cs**
 
 ```csharp
 using TasksManager.Models;
@@ -407,7 +459,7 @@ public partial class AddTaskPage : ContentPage
 
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        var task = new Task
+        var task = new UserTask
         {
             UserId = _user.Id,
             Title = TitleEntry.Text,
@@ -420,3 +472,5 @@ public partial class AddTaskPage : ContentPage
     }
 }
 ```
+
+---
