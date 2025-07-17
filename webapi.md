@@ -1,17 +1,12 @@
-🔥 💯 Merci pour ta précision ! On va tout reprendre **de A à Z**, étape par étape, sans raccourci.
-Voici **une version finale, complète, intégrale**, prête à être directement utilisée comme tutoriel ou README pour ton repo GitHub.
+#  **Solution complète WebAPI + MAUI (TaskManager)**
 
 ---
 
-# 💥 ✅ **Solution complète WebAPI + MAUI (TaskManager)**
+# **PARTIE 1 — WebAPI (.NET 7 ou 8)**
 
 ---
 
-# 🌐 **PARTIE 1 — WebAPI (.NET 7 ou 8)**
-
----
-
-## ✅ 1️⃣ Ajout des bibliothèques
+##  Ajout des bibliothèques
 
 ```bash
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
@@ -21,7 +16,7 @@ dotnet add package Swashbuckle.AspNetCore
 
 ---
 
-## ✅ 2️⃣ Ajout des modèles
+##  2️ Ajout des modèles
 
 ### **Models/User.cs**
 
@@ -70,7 +65,7 @@ public class UserTask
 
 ---
 
-## ✅ 3️⃣ Ajout du DbContext
+##  3️ Ajout du DbContext
 
 ### **Data/AppDbContext.cs**
 
@@ -91,7 +86,7 @@ public class AppDbContext : DbContext
 
 ---
 
-## ✅ 4️⃣ Ajout des contrôleurs
+##  4️ Ajout des contrôleurs
 
 ### **Controllers/UsersController.cs**
 
@@ -193,7 +188,7 @@ public class TasksController : ControllerBase
 
 ---
 
-## ✅ 5️⃣ Collection Postman (JSON)
+##  5️ Collection Postman (JSON)
 
 Voici une **version finale** de la collection, directement intégrable et prête à importer dans Postman.
 
@@ -335,22 +330,15 @@ Voici une **version finale** de la collection, directement intégrable et prête
 
 ## 💬 **Comment l'utiliser ?**
 
-✅ Copie tout le contenu du JSON ci-dessus.
-✅ Va dans **Postman → Import → Raw text → Colle → Importer**.
-✅ Les requêtes sont prêtes !
+ Copie tout le contenu du JSON ci-dessus.
+ Va dans **Postman → Import → Raw text → Colle → Importer**.
+
+
+#  **PARTIE 2 — Application MAUI**
 
 ---
 
-### 🚀 **Si tu veux, je peux aussi te générer directement un fichier `.json` à télécharger (par exemple `TaskManagerCollection.postman_collection.json`). Tu veux ? 💪🔥**
-
-
----
-
-# 📱 **PARTIE 2 — Application MAUI**
-
----
-
-## ✅ 1️⃣ DTO
+##  1️ DTO
 
 ### **DTO/UserDto.cs**
 
@@ -388,7 +376,7 @@ public class UserTaskDto
 
 ---
 
-## ✅ 2️⃣ Services
+##  2️ Services
 
 ### **Services/UserService.cs**
 
@@ -455,7 +443,7 @@ public class TaskService
 
 ---
 
-## ✅ 3️⃣ Injections
+##  3️ Injections
 
 ### **MauiProgram.cs**
 
@@ -469,7 +457,7 @@ builder.Services.AddSingleton<TaskRepository>();
 
 ---
 
-## ✅ 4️⃣ Repositories
+##  4️ Repositories
 
 ### **Repositories/UserRepository.cs**
 
@@ -522,7 +510,7 @@ public class TaskRepository
 
 ---
 
-## ✅ 5️⃣ Intégration dans les ContentPages (via injection)
+##  5️ Intégration dans les ContentPages (via injection)
 
 ### **Exemple UserListPage.xaml.cs**
 
@@ -560,7 +548,7 @@ public partial class UserListPage : ContentPage
 
 ---
 
-## ✅ **Pas besoin de modifications XAML ou AppShell.xaml**
+##  **Pas besoin de modifications XAML ou AppShell.xaml**
 
 * Navigation et structure restent identiques.
 * L’injection se fait automatiquement.
