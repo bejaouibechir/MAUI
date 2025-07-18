@@ -1,8 +1,12 @@
 # Utiliser d'autres types EventToCommandBehavior pour lier un évenement à une commande 
 
+Dans ce Tutorial nous découvrirons deux versions, un qui fonctionne sans paramètre et l'autre avec paramètre 
+
 ## Définir la commande dans le ViewModel 
 
 ### Etape1: Commencez par définir la classe dubehaviour principale :
+
+### La version sans paramètres
 
 ``` CSharp
 
@@ -117,8 +121,47 @@ namespace MauiApp1
     }
 }
 
-
 ```
+
+### La version avec paramètres 
+
+public class EventToCommandBehaviorWithParameter : EventToCommandBehavior
+{
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter), typeof(object), typeof(EventToCommandBehaviorWithParameter), null);
+
+    public object CommandParameter
+    {
+        get => GetValue(CommandParameterProperty);
+        set => SetValue(CommandParameterProperty, value);
+    }
+
+    // On override la méthode de gestion d'événement
+    private new void OnEventFired(object sender, EventArgs eventArgs)
+    {
+        var parameter = CommandParameter ?? eventArgs;
+
+        if (Command?.CanExecute(parameter) == true)
+            Command.Execute(parameter);
+    }
+
+    // On override AttachEvent pour brancher la méthode locale
+    protected override void AttachEvent(VisualElement bindable)
+    {
+        if (string.IsNullOrWhiteSpace(EventName))
+            return;
+
+        var eventInfo = bindable.GetType().GetEvent(EventName);
+        if (eventInfo == null)
+            throw new ArgumentException($"No event named '{EventName}' found on type '{bindable.GetType().Name}'");
+
+        var methodInfo = typeof(EventToCommandBehaviorWithParameter).GetMethod(nameof(OnEventFired), BindingFlags.Instance | BindingFlags.NonPublic);
+        var handler = Delegate.CreateDelegate(eventInfo.EventHandlerType, this, methodInfo);
+        eventInfo.AddEventHandler(bindable, handler);
+    }
+}
+
+
 ### Etape2: Créer le View Model:
 
 Ajoutez la classe  **MainViewModel** au projet.
@@ -128,25 +171,32 @@ using System.Windows.Input;
 
 namespace MauiApp1
 {
-    public class MainViewModel : BindableObject
-    {
-        public ICommand UnfocusedCommand { get; }
-
-        public MainViewModel()
-        {
-            UnfocusedCommand = new Command(OnUnfocused);
-        }
-
-        private void OnUnfocused(object obj)
-        {
-            App.Current.MainPage.DisplayAlert("Test de behavior", "Behavior testé avec succès", "OK");
-        }
-    }
+     public class MainViewModel
+     {
+         public ICommand UnfocusedCommand { get; }
+    
+         public MainViewModel()
+         {
+             UnfocusedCommand = new Command(OnUnfocused);
+         }
+    
+    
+         private void OnUnfocused(object obj)
+         {
+             if (obj is Entry entry)
+             {
+                 App.Current.MainPage.DisplayAlert("Test de behavior", entry.Text, "OK");
+             }
+             else App.Current.MainPage.DisplayAlert("Test de behavior", "Behavior testé avec succès", "OK");
+         }
+     }
 }
 
 ```
 
 ### Etape3: Définition de l'interface XAML:
+
+### Version de XAML sans paramètres
 
 ``` XML
 <?xml version="1.0" encoding="utf-8" ?>
@@ -169,8 +219,27 @@ namespace MauiApp1
         <Entry Placeholder="Et puis là ..." />
     </StackLayout>
 </ContentPage>
+```
+
+### Version de XAML avec paramètres
+
+
+``` XML
+<StackLayout>
+    <Entry Placeholder="Tapez ici..." x:Name="entry">
+        <Entry.Behaviors>
+            <local:EventToCommandBehaviorWithParameter EventName="Unfocused"
+                                          Command="{Binding UnfocusedCommand}" 
+                                          CommandParameter="{Binding Source={x:Reference entry}}"
+                                          />
+        </Entry.Behaviors>
+    </Entry>
+    <Entry Placeholder="Et puis là ..." />
+</StackLayout>
 
 ```
+
+
 **Remarque**:
 
 Le léger délai dans la méthode OnBindingContextChanged peut aider à résoudre les problèmes de synchronisation liés aux liaisons de données. Cela donne au système le temps de mettre à jour les liaisons avant que le comportement ne tente d'exécuter la commande. Si le problème persiste, il peut être utile d'examiner d'autres parties de l'application pour des problèmes potentiels de performance ou de synchronisation.
