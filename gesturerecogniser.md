@@ -12,17 +12,22 @@ namespace MauiApp.ViewModels
 {
     public class MainViewModel : BindableObject
     {
-        public ICommand TapCommand { get; }
+       public ICommand TapCommand { get; }
 
-        public MainViewModel()
-        {
-            TapCommand = new Command(OnTapped);
-        }
-
-        private void OnTapped()
-        {
-            // Logique à exécuter lors du tapotement
-        }
+            public MainViewModel()
+            {
+                TapCommand = new Command(OnTapped);
+            }
+            
+            
+            async private void OnTapped(object param)
+            {
+                if (param is Label label)
+                {
+                    string text = label.Text ?? "";
+                    await Application.Current.MainPage.DisplayAlert("Texte du label", text, "OK");
+                }
+            }
     }
 }
 
@@ -41,15 +46,18 @@ Ajoutez le **GestureRecognizer** à l'élément visuel souhaité dans le fichier
         <local:MainViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout>
-        <Label Text="Tap me!"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding TapCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
-    </StackLayout>
+   <StackLayout>
+    <Label Text="Tap me!" x:Name="mylabel"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding TapCommand}"
+                                  CommandParameter="{Binding Source={x:Reference mylabel}}"
+                                  />
+        </Label.GestureRecognizers>
+    </Label>
+</StackLayout>
+
 </ContentPage>
 
 ```
