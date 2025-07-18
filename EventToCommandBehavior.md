@@ -125,41 +125,45 @@ namespace MauiApp1
 
 ### La version avec paramètres 
 
-public class EventToCommandBehaviorWithParameter : EventToCommandBehavior
-{
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
-        nameof(CommandParameter), typeof(object), typeof(EventToCommandBehaviorWithParameter), null);
+``` csharp
+        public class EventToCommandBehaviorWithParameter : EventToCommandBehavior
+        {
+            public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+                nameof(CommandParameter), typeof(object), typeof(EventToCommandBehaviorWithParameter), null);
+        
+            public object CommandParameter
+            {
+                get => GetValue(CommandParameterProperty);
+                set => SetValue(CommandParameterProperty, value);
+            }
+        
+            // On override la méthode de gestion d'événement
+            private new void OnEventFired(object sender, EventArgs eventArgs)
+            {
+                var parameter = CommandParameter ?? eventArgs;
+        
+                if (Command?.CanExecute(parameter) == true)
+                    Command.Execute(parameter);
+            }
+        
+            // On override AttachEvent pour brancher la méthode locale
+            protected override void AttachEvent(VisualElement bindable)
+            {
+                if (string.IsNullOrWhiteSpace(EventName))
+                    return;
+        
+                var eventInfo = bindable.GetType().GetEvent(EventName);
+                if (eventInfo == null)
+                    throw new ArgumentException($"No event named '{EventName}' found on type '{bindable.GetType().Name}'");
+        
+                var methodInfo = typeof(EventToCommandBehaviorWithParameter).GetMethod(nameof(OnEventFired), BindingFlags.Instance | BindingFlags.NonPublic);
+                var handler = Delegate.CreateDelegate(eventInfo.EventHandlerType, this, methodInfo);
+                eventInfo.AddEventHandler(bindable, handler);
+            }
+        }
+```
 
-    public object CommandParameter
-    {
-        get => GetValue(CommandParameterProperty);
-        set => SetValue(CommandParameterProperty, value);
-    }
 
-    // On override la méthode de gestion d'événement
-    private new void OnEventFired(object sender, EventArgs eventArgs)
-    {
-        var parameter = CommandParameter ?? eventArgs;
-
-        if (Command?.CanExecute(parameter) == true)
-            Command.Execute(parameter);
-    }
-
-    // On override AttachEvent pour brancher la méthode locale
-    protected override void AttachEvent(VisualElement bindable)
-    {
-        if (string.IsNullOrWhiteSpace(EventName))
-            return;
-
-        var eventInfo = bindable.GetType().GetEvent(EventName);
-        if (eventInfo == null)
-            throw new ArgumentException($"No event named '{EventName}' found on type '{bindable.GetType().Name}'");
-
-        var methodInfo = typeof(EventToCommandBehaviorWithParameter).GetMethod(nameof(OnEventFired), BindingFlags.Instance | BindingFlags.NonPublic);
-        var handler = Delegate.CreateDelegate(eventInfo.EventHandlerType, this, methodInfo);
-        eventInfo.AddEventHandler(bindable, handler);
-    }
-}
 
 
 ### Etape2: Créer le View Model:
