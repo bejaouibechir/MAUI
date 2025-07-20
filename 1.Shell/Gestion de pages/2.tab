@@ -1,0 +1,180 @@
+# 💥 **Exemple complet — Shell avec TabBar**
+
+## 🗺️ **Vue globale**
+
+* Onglet **Accueil** → HomePage
+* Onglet **Profil** → ProfilePage
+* Onglet **Paramètres** → SettingsPage
+
+---
+
+## 🟢 **1️⃣ HomePage.xaml**
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.HomePage"
+             Title="Accueil">
+
+    <StackLayout Padding="20">
+        <Label Text="Bienvenue sur Accueil" FontSize="22" HorizontalOptions="Center"/>
+    </StackLayout>
+</ContentPage>
+```
+
+---
+
+### ✅ HomePage.xaml.cs
+
+```csharp
+namespace MauiApp1
+{
+    public partial class HomePage : ContentPage
+    {
+        public HomePage()
+        {
+            InitializeComponent();
+        }
+    }
+}
+```
+
+---
+
+## 🟢 **2️⃣ ProfilePage.xaml**
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.ProfilePage"
+             Title="Profil">
+
+    <StackLayout Padding="20">
+        <Label Text="Page Profil" FontSize="22" HorizontalOptions="Center"/>
+    </StackLayout>
+</ContentPage>
+```
+
+---
+
+### ✅ ProfilePage.xaml.cs
+
+```csharp
+namespace MauiApp1
+{
+    public partial class ProfilePage : ContentPage
+    {
+        public ProfilePage()
+        {
+            InitializeComponent();
+        }
+    }
+}
+```
+
+---
+
+## 🟢 **3️⃣ SettingsPage.xaml**
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.SettingsPage"
+             Title="Paramètres">
+
+    <StackLayout Padding="20">
+        <Label Text="Page Paramètres" FontSize="22" HorizontalOptions="Center"/>
+    </StackLayout>
+</ContentPage>
+```
+
+---
+
+### ✅ SettingsPage.xaml.cs
+
+```csharp
+namespace MauiApp1
+{
+    public partial class SettingsPage : ContentPage
+    {
+        public SettingsPage()
+        {
+            InitializeComponent();
+        }
+    }
+}
+```
+
+---
+
+## 🟢 **4️⃣ AppShell.xaml**
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:MauiApp1"
+       x:Class="MauiApp1.AppShell">
+
+    <TabBar>
+        <Tab Title="Accueil" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
+        </Tab>
+
+        <Tab Title="Profil" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
+        </Tab>
+
+        <Tab Title="Paramètres" Icon="settings.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
+        </Tab>
+    </TabBar>
+</Shell>
+```
+
+---
+
+### ✅ AppShell.xaml.cs
+
+```csharp
+namespace MauiApp1
+{
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            InitializeComponent();
+        }
+    }
+}
+```
+
+---
+
+## 🟢 **5️⃣ App.xaml.cs**
+
+```csharp
+public partial class App : Application
+{
+    public App()
+    {
+        InitializeComponent();
+
+        MainPage = new AppShell();
+    }
+}
+```
+
+---
+
+## 💡 **Astuce utile**
+
+* Tu peux mettre plusieurs `ShellContent` **dans le même `Tab`** si tu veux créer une pile dans un onglet.
+* Tu peux aussi combiner `<FlyoutItem>` avec `<TabBar>` si tu veux un menu latéral + onglets.
+
+---
+
+
