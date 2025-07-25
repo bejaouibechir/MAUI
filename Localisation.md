@@ -553,3 +553,220 @@ Dans le cas de confirmation les données seront sauvegardées selon la plateform
 
 - **Sur un appareil Windows :** Le fichier sera enregistré dans le répertoire des données d'application de l'utilisateur. Vous pouvez le trouver dans le chemin de répertoires des applications de l'utilisateur sous AppData\Local ou AppData\Roaming.
 
+---
+
+# Transformation en MVVM
+
+Parfait. Tu souhaites maintenant transformer **entièrement** cette application MAUI localisée — initialement conçue de façon impérative (code-behind) — en une architecture **MVVM complète et propre**, tout en **préservant** les éléments suivants :
+
+* `TranslateExtension` dynamique déjà améliorée.
+* `LanguageToFlagConverter` pour l’image du drapeau.
+* Interaction locale + internationalisation (`*.json`).
+* UI multi-plateforme avec champs à remplir et bouton d’action.
+
+---
+
+## ✅ Étapes de transformation vers MVVM
+
+Voici un **plan clair, complet et structuré** pour effectuer la transformation.
+
+---
+
+### **Étape 1 – Créer la classe `MainViewModel`**
+
+#### 🎯 Objectif :
+
+Porter tous les `x:Name.Text`, `.SelectedItem`, `.Placeholder`, `Clicked`, etc. dans un `ObservableObject` ou `INotifyPropertyChanged`.
+
+#### 💡 Utilise CommunityToolkit.Mvvm :
+
+```bash
+dotnet add package CommunityToolkit.Mvvm
+```
+
+#### 🧱 Exemple de squelette :
+
+```csharp
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Text.Json;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace MauiApp1.ViewModels;
+
+public partial class MainViewModel : ObservableObject
+{
+    public ObservableCollection<string> Languages { get; } = new()
+    {
+        "Langue française", "English language", "Lingua Española", "Deutsche Sprache"
+    };
+
+    public ObservableCollection<string> Countries { get; } = new()
+    {
+        "France", "Allemagne", "Espagne"
+    };
+
+    public ObservableCollection<string> ReservationTypes { get; } = new()
+    {
+        "VIP", "Standard"
+    };
+
+    [ObservableProperty] private int selectedLanguageIndex;
+    [ObservableProperty] private int selectedCountryIndex;
+    [ObservableProperty] private int selectedReservationIndex;
+    [ObservableProperty] private string nom;
+    [ObservableProperty] private string prenom;
+    [ObservableProperty] private string age;
+    [ObservableProperty] private string dateNaissance;
+
+    public MainViewModel()
+    {
+        LoadLanguage("en");
+    }
+
+    partial void OnSelectedLanguageIndexChanged(int value)
+    {
+        string langCode = value switch
+        {
+            0 => "fr",
+            1 => "en",
+            2 => "es",
+            3 => "de",
+            _ => "en"
+        };
+
+        CultureInfo.CurrentCulture = new CultureInfo($"{langCode}-{langCode.ToUpper()}");
+        LoadLanguage(langCode);
+    }
+
+    private async void LoadLanguage(string code)
+    {
+        await LocalizationService.LoadLocalizationResourcesAsync(code);
+    }
+
+    [RelayCommand]
+    private void Cancel()
+    {
+        Nom = Prenom = Age = DateNaissance = string.Empty;
+        SelectedCountryIndex = -1;
+        SelectedReservationIndex = -1;
+    }
+
+    [RelayCommand]
+    private async Task Apply()
+    {
+        var formData = new
+        {
+            Nom,
+            Prenom,
+            Age,
+            DateNaissance,
+            Langue = Languages[SelectedLanguageIndex],
+            PaysNaissance = SelectedCountryIndex >= 0 ? Countries[SelectedCountryIndex] : null,
+            Reservation = SelectedReservationIndex >= 0 ? ReservationTypes[SelectedReservationIndex] : null
+        };
+
+        var result = await Shell.Current.DisplayAlert(
+            LocalizationService.Translate("DisplayAlertTitle"),
+            LocalizationService.Translate("DisplayAlertBody"),
+            LocalizationService.Translate("DisplayAlertOK"),
+            LocalizationService.Translate("DisplayAlertCancel"));
+
+        if (result)
+        {
+            var filePath = Path.Combine(FileSystem.Current.AppDataDirectory, $"formData{formData.GetHashCode()}.json");
+            await File.WriteAllTextAsync(filePath, JsonSerializer.Serialize(formData));
+        }
+        else
+        {
+            Cancel();
+        }
+    }
+}
+```
+
+---
+
+### **Étape 2 – Adapter le `MainPage.xaml` au ViewModel**
+
+* Retire tous les `x:Name` sauf si nécessaires.
+* Remplace les `.Text`, `.SelectedIndex`, etc. par des `Binding`.
+* L’image du drapeau reste liée au `SelectedLanguageIndex`.
+
+#### 🧩 Exemple :
+
+```xml
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiApp1.ViewModels"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.MainPage">
+
+    <ContentPage.Resources>
+        <local:TranslateExtension x:Key="Translate" />
+        <local:LanguageToFlagConverter x:Key="LanguageToFlagConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="20">
+
+            <Label Text="{local:Translate Key=FormTitle}" 
+                   FontSize="36"
+                   HorizontalOptions="Center" />
+
+            <Image HeightRequest="200"
+                   WidthRequest="200"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Source="{Binding SelectedLanguageIndex, Converter={StaticResource LanguageToFlagConverter}}" />
+
+            <Picker Title="{local:Translate Key=LanguagePickerTitle}"
+                    ItemsSource="{Binding Languages}"
+                    SelectedIndex="{Binding SelectedLanguageIndex, Mode=TwoWay}" />
+
+            <Entry Placeholder="{local:Translate Key=nomEntryPlaceholder}" 
+                   Text="{Binding Nom, Mode=TwoWay}" />
+            <Entry Placeholder="{local:Translate Key=prenomEntryPlaceholder}" 
+                   Text="{Binding Prenom, Mode=TwoWay}" />
+            <Entry Placeholder="{local:Translate Key=ageEntryPlaceholder}" 
+                   Text="{Binding Age, Mode=TwoWay}" 
+                   Keyboard="Numeric" />
+            <Entry Placeholder="{local:Translate Key=dateNaissanceEntryPlaceholder}" 
+                   Text="{Binding DateNaissance, Mode=TwoWay}" />
+
+            <Picker Title="{local:Translate Key=CountryPickerTitle}"
+                    ItemsSource="{Binding Countries}"
+                    SelectedIndex="{Binding SelectedCountryIndex, Mode=TwoWay}" />
+
+            <Picker Title="{local:Translate Key=ReservationPickerTitle}"
+                    ItemsSource="{Binding ReservationTypes}"
+                    SelectedIndex="{Binding SelectedReservationIndex, Mode=TwoWay}" />
+
+            <TimePicker /> <!-- libre ou à lier -->
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="{local:Translate Key=CancelButtonText}" 
+                        Command="{Binding CancelCommand}" 
+                        Margin="5" />
+                <Button Text="{local:Translate Key=ApplyButtonText}" 
+                        Command="{Binding ApplyCommand}" 
+                        Margin="5" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+```
+
+---
+
+### **Étape 3 – Nettoyer `MainPage.xaml.cs`**
+
+Supprimer tout le code lié aux événements (`Clicked`, `SelectedIndexChanged`), car **tout est maintenant dans le ViewModel**.
+
+
