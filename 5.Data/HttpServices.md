@@ -13,7 +13,7 @@ namespace MyCrudApp.Services;
 public class HttpPersonService : IHttpPersonService
 {
     private readonly HttpClient _http;
-    private const string BaseUrl = "https://localhost:7098/api/person"; // ⚠️ à adapter selon l'URL de votre API
+    private const string BaseUrl = "https://localhost:7098/api/person"; // à adapter selon l'URL de votre API
 
     public HttpPersonService(HttpClient httpClient)
     {
